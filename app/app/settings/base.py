@@ -26,6 +26,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     # 'django.contrib.admin',
     'ntty.apps.NttyConfig',
+    'livereload',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -42,6 +43,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'livereload.middleware.LiveReloadScript',
 ]
 
 ROOT_URLCONF = 'app.urls'
