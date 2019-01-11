@@ -2,6 +2,7 @@ Django==2.1.2
 django-heroku
 django-livereload-server
 djangorestframework==3.7.3
+neurodocker
 gunicorn
 psycopg2-binary
 PyYAML

@@ -25,7 +25,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     # 'django.contrib.admin',
-    'ntty.apps.NttyConfig',
+    'neurodocker.apps.NeurodockerConfig',
     'livereload',
     'django.contrib.auth',
     'django.contrib.contenttypes',

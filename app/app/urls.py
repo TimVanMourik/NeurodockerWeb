@@ -17,12 +17,16 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.urls import path
 from django.contrib import admin
+from api.urls import api_urls
 
-import ntty.views
+import neurodocker.views
 
 app_name = 'app'
 
 urlpatterns = [
-    url(r'^$',           ntty.views.index,       name='index'),
-    url(r'^admin/?',     admin.site.urls),
+    # api calls
+    url(r"^api/", include(api_urls)),
+    
+    url(r'^$',           neurodocker.views.index,       name='index'),
+    # url(r'^admin/?',     admin.site.urls),
 ]
