@@ -1,7 +1,9 @@
 Django==2.1.2
 django-heroku
 django-livereload-server
+django-sass-processor
 djangorestframework==3.7.3
+libsass
 neurodocker
 gunicorn
 psycopg2-binary
