@@ -3,6 +3,13 @@ ENV PYTHONUNBUFFERED 1
 RUN mkdir /code /code/requirements
 WORKDIR /code
 
+#Install Node.js
+RUN curl -sSLO https://deb.nodesource.com/setup_9.x && \
+    bash setup_9.x && \
+    apt-get install nodejs && \
+    rm setup_9.x && \
+    npm -g install npm@6.4.1
+
 # Install Python dependencies
 ADD requirements.txt /code/
 ADD requirements/base.txt /code/requirements/

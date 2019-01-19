@@ -101,3 +101,6 @@ node_modules/
 db.sqlite3
 staticfiles/
 webpack-stats.json
+webpack-stats-prod.json
+webpack_bundles/
+.idea

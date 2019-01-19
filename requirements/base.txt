@@ -1,7 +1,8 @@
-Django==2.1.2
+Django==2.1.5
 django-heroku
 django-livereload-server
 django-sass-processor
+django-webpack-loader
 djangorestframework==3.7.3
 libsass
 neurodocker

@@ -1,0 +1,412 @@
+{
+  "packages": [
+    {
+      "name": "AFNI",
+      "arguments": [
+        {
+          "name": "version",
+          "default": "latest",
+          "type": "string"
+        },
+        {
+          "name": "method",
+          "options": [
+            "binaries",
+            "source"
+          ],
+          "default": "binaries",
+          "type": "string"
+        },
+        {
+          "name": "install_path",
+          "default": "/opt/afni-{version}",
+          "type": "string"
+        },
+        {
+          "name": "install_r",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "install_r_pkgs",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "install_python2",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "install_python3",
+          "type": "boolean",
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "ANTS",
+      "arguments": [
+        {
+          "name": "version",
+          "default": "2.3.0",
+          "type": "string"
+        },
+        {
+          "name": "method",
+          "options": [
+            "binaries",
+            "source"
+          ],
+          "default": "binaries",
+          "type": "string"
+        },
+        {
+          "name": "install_path",
+          "options": "/opt/ants-{version}",
+          "type": "string"
+        },
+        {
+          "name": "cmake_opts",
+          "type": "string"
+        },
+        {
+          "name": "make_opts",
+          "type": "string"
+        }
+
+      ]
+    },
+    {
+      "name": "Convert3D",
+      "arguments": [
+        {
+          "name": "version",
+          "default": "1.0.0",
+          "type": "string"
+        },
+        {
+          "name": "method",
+          "options": [
+            "binaries",
+            "source"
+          ],
+          "default": "binaries",
+          "type": "string"
+        },
+        {
+          "name": "install_path",
+          "options": "/opt/convert3d-{version}",
+          "type": "string"
+        }
+
+      ]
+    },
+    {
+      "name": "dcm2niix",
+      "arguments": [
+        {
+          "name": "version",
+          "default": "latest",
+          "type": "string"
+        },
+        {
+          "name": "method",
+          "options": [
+            "binaries",
+            "source"
+          ],
+          "default": "binaries",
+          "type": "string"
+        },
+        {
+          "name": "install_path",
+          "options": "/opt/ants-{version}",
+          "type": "string"
+        },
+        {
+          "name": "cmake_opts",
+          "type": "string"
+
+        },
+        {
+          "name": "make_opts",
+          "type": "string"
+
+        }
+
+      ]
+    },
+    {
+      "name": "FreeSurfer",
+      "arguments": [
+        {
+          "name": "version",
+          "default": "6.0.0-min",
+          "type": "string"
+        },
+        {
+          "name": "method",
+          "options": [
+            "binaries",
+            "source"
+          ],
+          "default": "binaries",
+          "type": "string"
+        },
+        {
+          "name": "install_path",
+          "options": "/opt/freesurfer-{version}",
+          "type": "string"
+        },
+        {
+          "name": "exclude_paths",
+          "type": "string"
+
+        },
+        {
+          "name": "license_path",
+          "type": "string"
+
+        }
+
+      ]
+    },
+    {
+      "name": "FSL",
+      "arguments": [
+        {
+          "name": "version",
+          "default": "5.0.11",
+          "type": "string"
+        },
+        {
+          "name": "method",
+          "options": [
+            "binaries",
+            "source"
+          ],
+          "default": "binaries",
+          "type": "string"
+        },
+        {
+          "name": "install_path",
+          "options": "/opt/fsl-{version}",
+          "type": "string"
+        },
+        {
+          "name": "exclude_paths",
+          "type": "string"
+
+        }
+
+      ]
+    },
+    {
+      "name": "matlabmcr",
+      "arguments": [
+        {
+          "name": "version",
+          "default": "2018a",
+          "type": "string"
+        },
+        {
+          "name": "method",
+          "options": [
+            "binaries",
+            "source"
+          ],
+          "default": "binaries",
+          "type": "string"
+        },
+        {
+          "name": "install_path",
+          "options": "/opt/matlabmcr-{version}",
+          "type": "string"
+        }
+
+      ]
+    },
+    {
+      "name": "MINC",
+      "arguments": [
+        {
+          "name": "version",
+          "default": "1.9.15",
+          "type": "string"
+        },
+        {
+          "name": "method",
+          "options": [
+            "binaries",
+            "source"
+          ],
+          "default": "binaries",
+          "type": "string"
+        },
+        {
+          "name": "install_path",
+          "options": "/opt/minc-{version}",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "Miniconda",
+      "arguments": [
+        {
+          "name": "version",
+          "default": "1.9.15",
+          "type": "string"
+        },
+        {
+          "name": "install_path",
+          "options": "/opt/miniconda-{version}",
+          "type": "string"
+        },
+        {
+          "name": "create_env",
+          "type": "string"
+
+        },
+        {
+          "name": "use_env",
+          "type": "string"
+
+        },
+        {
+          "name": "conda_install",
+          "type": "string"
+
+        },
+        {
+          "name": "pip_install",
+          "type": "string"
+
+        },
+        {
+          "name": "activate",
+          "type": "string"
+
+        }
+
+      ]
+    },
+    {
+      "name": "MRtrix3",
+      "arguments": [
+        {
+          "name": "version",
+          "default": "3.0",
+          "type": "string"
+        },
+        {
+          "name": "method",
+          "options": [
+            "binaries",
+            "source"
+          ],
+          "default": "binaries",
+          "type": "string"
+        },
+        {
+          "name": "install_path",
+          "options": "/opt/mrtrix3-{version}",
+          "type": "string"
+        }
+
+      ]
+    },
+    {
+      "name": "NeuroDebian",
+      "arguments": [
+        {
+          "name": "os_codename",
+          "default": "stretch",
+          "type": "string"
+        },
+        {
+          "name": "server"
+
+        },
+        {
+          "name": "full",
+          "type": "boolean",
+          "default": false
+        }
+
+      ]
+    },
+    {
+      "name": "PETPVC",
+      "arguments": [
+        {
+          "name": "version",
+          "default": "1.2.2",
+          "type": "string"
+        },
+        {
+          "name": "method",
+          "options": [
+            "binaries",
+            "source"
+          ],
+          "default": "binaries",
+          "type": "string"
+        },
+        {
+          "name": "install_path",
+          "options": "/opt/petpvc-{version}",
+          "type": "string"
+        }
+
+      ]
+    },
+    {
+      "name": "SPM12",
+      "arguments": [
+        {
+          "name": "version",
+          "default": "r7219",
+          "type": "string"
+        },
+        {
+          "name": "method",
+          "options": [
+            "binaries",
+            "source"
+          ],
+          "default": "binaries",
+          "type": "string"
+        },
+        {
+          "name": "install_path",
+          "options": "/opt/spm12-{version}",
+          "type": "string"
+        }
+
+      ]
+    },
+    {
+      "name": "VNC",
+      "arguments": [
+        {
+          "name": "passwd",
+          "default": "r7219",
+          "type": "string"
+        },
+        {
+          "name": "start_at_runtime",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "name": "geometry",
+          "type": "string"
+        }
+
+      ]
+    }
+
+  ]
+}

@@ -2,20 +2,40 @@
   "name": "NeuroscienceThroughTheYears",
   "version": "1.0.0",
   "description": "NeuroscienceThroughTheYears",
-  "dependencies": {},
+  "dependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/runtime": "^7.2.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "@emotion/core": "^10.0.5",
+    "radium": "^0.25.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-router-dom": "^4.3.1",
+    "react-hot-loader": "^4.2.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.14"
+  },
   "devDependencies": {
+    "@babel/preset-react": "^7.0.0",
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "bootstrap": "^3.3.6",
-    "font-proxima-nova": "^1.0.1",
     "jquery": "^3.3.1",
-    "popper.js": "^1.12.9",
+    "webpack-bundle-tracker": "^0.4.2-beta"
+  },
+  "scripts": {
+    "development": "webpack --mode=development --config ./webpack/webpack.dev.config.js --progress --colors",
+    "watch": "webpack --mode=development --config ./webpack/webpack.watch.config.js --progress --colors",
+    "production": "webpack --mode=production --config ./webpack/webpack.prod.config.js --progress --colors"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/timvanmourik/Giraffe.git"
+    "url": "git+https://github.com/TimVanMourik/NeurodockerWeb.git"
   },
   "author": "Tim van Mourik",
   "license": "GPL-3.0"
