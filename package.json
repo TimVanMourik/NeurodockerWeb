@@ -29,6 +29,7 @@
     "webpack-bundle-tracker": "^0.4.2-beta"
   },
   "scripts": {
+    "postinstall": "webpack --mode=production --config ./webpack/webpack.prod.config.js",
     "development": "webpack --mode=development --config ./webpack/webpack.dev.config.js --progress --colors",
     "watch": "webpack --mode=development --config ./webpack/webpack.watch.config.js --progress --colors",
     "production": "webpack --mode=production --config ./webpack/webpack.prod.config.js --progress --colors"
