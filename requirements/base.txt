@@ -1,8 +1,10 @@
 Django==2.1.5
 django-heroku
+django-cors-headers
 django-compressor
 django-livereload-server
 django-sass-processor
+django-settings-export
 django-webpack-loader
 djangorestframework==3.7.3
 libsass
@@ -10,3 +12,4 @@ neurodocker
 gunicorn
 psycopg2-binary
 PyYAML
+WhiteNoise
