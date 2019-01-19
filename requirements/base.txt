@@ -1,5 +1,6 @@
 Django==2.1.5
 django-heroku
+django-compressor
 django-livereload-server
 django-sass-processor
 django-webpack-loader
