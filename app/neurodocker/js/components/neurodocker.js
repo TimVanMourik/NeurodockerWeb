@@ -8,16 +8,18 @@ class Neurodocker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      installerArguments: null
+      packages: null
     };
   }
 
   async componentDidMount() {
     const response = await fetch(`${API_HOST}/installer-arguments`);
-    this.setState({ installerArguments: await response.json() });
+    const installerArguments = await response.json()
+    this.setState({ packages: installerArguments && installerArguments.packages });
   }
 
   render() {
+    const { packages } = this.state;
     return (
       <div className="container-fluid mt-3 ">
         <div className="col text-center">
@@ -27,10 +29,15 @@ class Neurodocker extends React.Component {
           <div>
             <h3>Toolboxes</h3>
             <select>
-              <option>FSL</option>
-              <option>SPM</option>
-              <option>FreeSurfer</option>
-              <option>Nipype</option>
+              {
+                packages && packages.map(toolbox => (
+                  <option
+                    key={toolbox.name}
+                  >
+                    {toolbox.name}
+                  </option>
+                ))
+              }
             </select>
           </div>
           <div>
