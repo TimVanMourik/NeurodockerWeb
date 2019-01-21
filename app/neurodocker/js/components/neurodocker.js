@@ -8,8 +8,10 @@ class Neurodocker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      packages: null
+      packages: null,
+      selectedToolbox: null,
     };
+    this.selectToolbox = this.selectToolbox.bind(this);
   }
 
   async componentDidMount() {
@@ -18,8 +20,14 @@ class Neurodocker extends React.Component {
     this.setState({ packages: installerArguments && installerArguments.packages });
   }
 
+  selectToolbox(toolbox) {
+    this.setState({
+      selectedToolbox: toolbox.target.value
+    });
+  }
   render() {
-    const { packages } = this.state;
+    const { packages, selectedToolbox } = this.state;
+    const selection = packages && packages.filter(toolbox => toolbox.name === selectedToolbox)[0];
     return (
       <div className="container-fluid mt-3 ">
         <div className="col text-center">
@@ -28,7 +36,9 @@ class Neurodocker extends React.Component {
         <div className="col text-center">
           <div>
             <h3>Toolboxes</h3>
-            <select>
+            <select
+              onChange={this.selectToolbox}
+            >
               {
                 packages && packages.map(toolbox => (
                   <option
@@ -42,8 +52,15 @@ class Neurodocker extends React.Component {
           </div>
           <div>
             <h3>Attributes</h3>
-              <input>
-              </input>
+            <table className="toolbox-listview">
+              <tbody>
+              {
+                selection && selection.arguments && selection.arguments.map(argument => (
+                  <tr><td>{argument.name}</td><td><input readOnly value={argument.value || argument.default || ""} /></td></tr>
+                ))
+              }
+              </tbody>
+            </table>
           </div>
         </div>
 
