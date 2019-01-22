@@ -1,6 +1,8 @@
 import React from "react";
 import Radium from "radium";
+import to from "await-to-js";
 
+import { getCsrfToken } from "../utils/auth";
 import styles from "../styles/neurodocker.js";
 import { API_HOST } from "../config";
 
@@ -10,8 +12,14 @@ class Neurodocker extends React.Component {
     this.state = {
       packages: null,
       selectedToolbox: null,
+      dockerOrSingularity: "docker",
+      dockerCommand: ""
     };
     this.selectToolbox = this.selectToolbox.bind(this);
+    this.updateArgument = this.updateArgument.bind(this);
+    this.toggleToolbox = this.toggleToolbox.bind(this);
+    this.updateCode = this.updateCode.bind(this);
+    this.makeDockerFile = this.makeDockerFile.bind(this);
   }
 
   async componentDidMount() {
@@ -20,13 +28,90 @@ class Neurodocker extends React.Component {
     this.setState({ packages: installerArguments && installerArguments.packages });
   }
 
-  selectToolbox(toolbox) {
+  selectToolbox(event) {
     this.setState({
-      selectedToolbox: toolbox.target.value
+      selectedToolbox: event.target.value
     });
   }
-  render() {
+
+  updateArgument(event, selectedArgument) {
+    const { value } = event.target;
     const { packages, selectedToolbox } = this.state;
+    const newPackages = packages.map(toolbox => {
+      if(toolbox.name === selectedToolbox) {
+        const newArguments = toolbox.arguments.map(argument => {
+          if(argument.name === selectedArgument) {
+            return {...argument, value}
+          } else {
+            return argument
+          }
+        })
+        return {...toolbox, arguments: newArguments}
+      } else {
+        return toolbox
+      }
+    });
+    this.setState({
+      packages: newPackages
+    })
+    this.updateCode(newPackages);
+  }
+
+  toggleToolbox() {
+    const { value } = event.target;
+    const { packages, selectedToolbox } = this.state;
+    const newPackages = packages.map(toolbox => {
+      if(toolbox.name === selectedToolbox) {
+        return {...toolbox, included: toolbox.included ? !toolbox.included : true}
+      } else {
+        return toolbox
+      }
+    });
+    this.setState({
+      packages: newPackages
+    })
+    this.updateCode(newPackages);
+  }
+
+  updateCode(packages) {
+    const { dockerOrSingularity } = this.state;
+    const dockerCommand = `neurodocker generate ${dockerOrSingularity} `
+
+    const list = packages && packages
+      .filter(toolbox => toolbox.included)
+      .map(toolbox => {
+        const argumentList = toolbox.arguments && toolbox.arguments
+          .filter(argument => argument.value || argument.default)
+          .map(argument => {
+          return `${argument.name}=${argument.value || argument.default}`
+        })
+        return (`--${toolbox.cli} ${argumentList && argumentList.join(" ") || ""} `)
+      }).join(" ")
+    this.setState({
+      dockerCommand: `${dockerCommand} ${list}`
+    })
+  }
+
+  async makeDockerFile() {
+    const { code } = this.state;
+    const body = JSON.stringify({ code });
+    const dockerResponse = await fetch(`${API_HOST}/dockerfile`, {
+      method: "POST",
+      headers: { "X-CSRFToken": await getCsrfToken() },
+      body,
+      credentials: "include"
+    });
+    const [error, answer] = await to(dockerResponse.json());
+    if (error) {
+      return false;
+    } else {
+      return answer.ok;
+    }
+  }
+
+  render() {
+    const { packages, dockerCommand, selectedToolbox } = this.state;
+
     const selection = packages && packages.filter(toolbox => toolbox.name === selectedToolbox)[0];
     return (
       <div className="container-fluid mt-3 ">
@@ -39,6 +124,7 @@ class Neurodocker extends React.Component {
             <select
               onChange={this.selectToolbox}
             >
+            <option /> {/*Starting with an empty option here */}
               {
                 packages && packages.map(toolbox => (
                   <option
@@ -56,35 +142,47 @@ class Neurodocker extends React.Component {
               <tbody>
               {
                 selection && selection.arguments && selection.arguments.map(argument => (
-                  <tr><td>{argument.name}</td><td><input readOnly value={argument.value || argument.default || ""} /></td></tr>
+                  <tr
+                    key={argument.name}
+                  >
+                    <td>{argument.name}</td>
+                    <td>
+                      <input
+                        onChange={(event) => this.updateArgument(event, argument.name)}
+                        value={argument.value || argument.default || ""}
+                      />
+                    </td>
+                  </tr>
                 ))
               }
               </tbody>
             </table>
           </div>
+            <button
+              onClick={this.toggleToolbox}
+            >
+              {selection && selection.included ? "Remove" : "Add"}
+            </button>
         </div>
-
         <div className="col text-center">
-          <h3>Listview of toolboxes</h3>
-          <table className="toolbox-listview">
-            <tbody>
-              <tr><th>Name</th><th>Version</th><th>Method</th><th>Other parameters</th></tr>
-              <tr><td>Nipype</td><td>1.2.3</td><td>binaries</td><td></td></tr>
-              <tr><td>FSL</td><td>4.5.6</td><td>binaries</td><td>test</td></tr>
-              <tr><td>SPM</td><td>1.3.5</td><td>binaries</td><td>something</td></tr>
-              <tr><td>AFNI</td><td>5.6.7</td><td>binaries</td><td>else</td></tr>
-            </tbody>
-          </table>
+          <h3>Neurodocker command:</h3>
+          <p
+            style={[styles.command]}
+          >
+            {dockerCommand}
+          </p>
         </div>
         <div className="col text-center">
           <div className="text-center">
-            <button>
+            <button
+              onClick={this.makeDockerFile}
+            >
               Create Dockerfile
             </button>
           </div>
 
           <div className="col text-center">
-            <h3>Neurodocker output</h3>
+            <h3>Dockerfile</h3>
           </div>
         </div>
       </div>

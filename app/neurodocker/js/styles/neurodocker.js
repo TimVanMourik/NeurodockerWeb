@@ -7,6 +7,9 @@ const styles = {
     left: "2.5%",
     top: "2.5%",
     textAlign: "center"
+  },
+  command: {
+    fontFamily: 'Courier',
   }
 };
 

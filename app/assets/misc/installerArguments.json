@@ -2,6 +2,7 @@
   "packages": [
     {
       "name": "AFNI",
+      "cli": "afni",
       "arguments": [
         {
           "name": "version",
@@ -46,6 +47,7 @@
     },
     {
       "name": "ANTS",
+      "cli": "ants",
       "arguments": [
         {
           "name": "version",
@@ -79,6 +81,7 @@
     },
     {
       "name": "Convert3D",
+      "cli": "convert3d",
       "arguments": [
         {
           "name": "version",
@@ -104,6 +107,7 @@
     },
     {
       "name": "dcm2niix",
+      "cli": "dcm2niix",
       "arguments": [
         {
           "name": "version",
@@ -139,6 +143,7 @@
     },
     {
       "name": "FreeSurfer",
+      "cli": "freesurfer",
       "arguments": [
         {
           "name": "version",
@@ -174,6 +179,7 @@
     },
     {
       "name": "FSL",
+      "cli": "fsl",
       "arguments": [
         {
           "name": "version",
@@ -204,6 +210,7 @@
     },
     {
       "name": "matlabmcr",
+      "cli": "matlabmcr",
       "arguments": [
         {
           "name": "version",
@@ -229,6 +236,7 @@
     },
     {
       "name": "MINC",
+      "cli": "minc",
       "arguments": [
         {
           "name": "version",
@@ -253,6 +261,7 @@
     },
     {
       "name": "Miniconda",
+      "cli": "miniconda",
       "arguments": [
         {
           "name": "version",
@@ -294,6 +303,7 @@
     },
     {
       "name": "MRtrix3",
+      "cli": "mrtrix3",
       "arguments": [
         {
           "name": "version",
@@ -319,6 +329,7 @@
     },
     {
       "name": "NeuroDebian",
+      "cli": "neurodebian",
       "arguments": [
         {
           "name": "os_codename",
@@ -339,6 +350,7 @@
     },
     {
       "name": "PETPVC",
+      "cli": "petpvc",
       "arguments": [
         {
           "name": "version",
@@ -364,6 +376,7 @@
     },
     {
       "name": "SPM12",
+      "cli": "spm12",
       "arguments": [
         {
           "name": "version",
@@ -389,6 +402,7 @@
     },
     {
       "name": "VNC",
+      "cli": "vnc",
       "arguments": [
         {
           "name": "passwd",
